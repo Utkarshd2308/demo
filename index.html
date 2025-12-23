@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varsha Irrigation & Landscape Solutions</title>
+  <meta name="description" content="Professional Drip Irrigation, Sprinkler Systems, Landscape Design & Automation in Maharashtra. Free site visits.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #F2F2F2;
+      color: #333333;
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER + NAVBAR ===== */
+    .main-header {
+      height: 110px; /* desktop header height */
+      background: linear-gradient(90deg, #b6e2a1 0%, #c0e6f8 50%, #9cc4ff 100%);
+      border-radius: 40px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      width: 100%;
+      margin: 0 0 20px 0;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    /* LOGO: clearly visible on laptop */
+    .logo-img {
+      height: 130px;      /* मोठं पण header मध्ये fit */
+      width: auto;       /* proportion maintain */
+      display: block;
+    }
+
+    /* hamburger button */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .menu-line {
+      width: 26px;
+      height: 3px;
+      background-color: #22313f;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .main-nav .nav-item {
+      font-weight: 600;
+      text-decoration: none;
+      color: #22313f;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .main-nav .nav-item:hover,
+    .main-nav .nav-item.active {
+      color: #26a65b;
+      border-color: #26a65b;
+    }
+
+    /* overlay for mobile menu */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+      /* LOGO: mobile वरही clear दिसेल इतका मोठा पण header break होणार नाही */
+      .logo-img {
+        height: 120px;
+        width:150px;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100vh;
+        background-color: #f2f2f2;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem 1rem;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+        z-index: 1001;
+      }
+
+      .main-nav.active {
+        right: 0;
+      }
+
+      .main-nav .nav-item {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* ==== HERO SECTION ==== */
+    .hero-section {
+      max-width: 1250px;
+      margin: 10px auto 10px auto;
+      padding: 40px 20px 20px 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-text {
+      max-width: 650px;
+    }
+
+    .hero-tagline {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #4b6b3c;
+      margin-bottom: 10px;
+    }
+
+    .hero-heading {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      line-height: 1.15;
+      color: #3f5b2b;
+      margin-bottom: 18px;
+    }
+
+    .hero-subtext {
+      font-size: 1rem;
+      color: #555555;
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      background: linear-gradient(90deg, #a7e08f 0%, #8dc3ff 100%);
+      color: #064420;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
+
+    .hero-visual-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-visual {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 30px;
+      box-shadow: 0 22px 55px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    @media (max-width: 900px) {
+      .hero-section {
+        grid-template-columns: 1fr;
+        padding: 24px 16px;
+        margin-top: 8px;
+      }
+
+      .hero-visual-wrapper {
+        order: -1;
+      }
+    }
+
+    /* ===== REST OF EXISTING CSS ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .services-section,
+    .products-section,
+    .why-choose-us-section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      background-color: #F2F2F2;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #333333;
+    }
+
+    .page-title{
+      font-size: clamp(1.8rem, 5vw, 3rem);
+    }
+
+    .services-grid,
+    .products-grid,
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 0 10px;
+    }
+
+    .service-card,
+    .product-card,
+    .why-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.4s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .service-card:hover,
+    .product-card:hover,
+    .why-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+
+    .service-image,
+    .product-image,
+    .why-card img {
+      width: 100%;
+      max-width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-image {
+      height: 200px;
+      object-fit: contain;
+      width: 300px;
+    }
+
+    .service-title,
+    .product-title,
+    .why-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 1rem;
+    }
+
+    .product-desc,
+    .service-card p,
+    .why-card p {
+      color: #333333;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .coverage-section {
+      padding: 4rem 0;
+      background-color: #F2F2F2;
+    }
+
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .coverage-item {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.4s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .coverage-item:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+
+    .coverage-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .coverage-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 1rem;
+    }
+
+    .coverage-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .footer-bottom {
+      padding: 1.5rem 0;
+      background:#ffffff;
+      border-top: 1px solid #e5e5e5;
+      font-size: 0.9rem;
+      color:#333333;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Varsha Irrigation Logo" class="logo-img">
+      </a>
+
+      <!-- HAMBURGER -->
+      <div class="mobile-menu-toggle" onclick="toggleMenu()">
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+      </div>
+
+      <!-- NAV -->
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="about us.html" class="nav-item">About Us</a>
+        <a href="service.html" class="nav-item">Services</a>
+        <a href="#products" class="nav-item">Products</a>
+        <a href="maintenance.html" class="nav-item">Maintenance</a>
+        <a href="contact us.html" class="nav-item">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+  <!-- बाकी HTML तुझ्या code प्रमाणेच (hero, services, why, products, coverage, footer) राहू दे -->
+   <section class="hero-section">
+    <div class="hero-text">
+      <div class="hero-tagline">Irrigation & Landscaping Experts</div>
+      <h1 class="hero-heading">
+        Premium Irrigation Design,<br>
+        Installation & Maintenance
+      </h1>
+      <p class="hero-subtext">
+        Custom irrigation solutions for healthy landscapes—smart systems, precision watering,
+        seasonal service, and more.
+      </p>
+      <a href="tel:+919822755102" class="hero-cta">
+        Get a free consultation
+      </a>
+    </div>
+
+    <div class="hero-visual-wrapper">
+      <div class="hero-visual">
+        <img src="garden-plan.jpg" alt="Landscape irrigation design plan">
+      </div>
+    </div>
+  </section>
+
+  <!-- बाकी sections तुझ्या code प्रमाणेच -->
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div align="center">
+        <h1 class="page-title"><b><span style="color:green">VARSHA IRRIGATION & LANDSCAPE</span></b></h1>
+      </div>
+      <br>
+      <h1 class="section-title">Our Services</h1>
+      <div class="services-grid">
+        <div class="service-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/13412/13412220.png" alt="">
+          <h3 class="service-title">Drip Irrigation</h3>
+          <p>Water-efficient drip systems designed for maximum yield and minimum waste. Perfect for orchards, farms & gardens.</p>
+        </div>
+
+        <div class="service-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/5371/5371655.png" alt="">
+          <h3 class="service-title">Sprinkler System</h3>
+          <p>High-performance sprinkler solutions for large agricultural fields, lawns & sports grounds.</p>
+        </div>
+
+        <div class="service-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/2795/2795585.png" alt="">
+          <h3 class="service-title">Landscape Design</h3>
+          <p>Smart irrigation controllers with mobile app control, weather sensors & remote management.</p>
+        </div>
+
+        <div class="service-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/16342/16342357.png" alt="">
+          <h3 class="service-title">Irrigation Automation</h3>
+          <p>Uses smart controllers, soil sensors, and weather data to deliver precise water amounts exactly when plants need it.</p>
+        </div>
+
+        <div class="service-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/5316/5316870.png" alt="">
+          <h3 class="service-title">Maintenance Services</h3>
+          <p>Leak repairs, filter cleaning, sprinkler tuning & seasonal service for peak performance & water savings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-choose-us-section" id="why-us">
+    <div class="container">
+      <h1 class="section-title">Why Choose Varsha Irrigation?</h1>
+      <div class="why-grid">
+        <div class="why-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/6012/6012670.png" alt="">
+          <h3 class="why-title">Experienced Team</h3>
+          <p>15+ years designing, installing, and automating drip & sprinkler systems across Maharashtra farms, orchards, and landscapes.</p>
+        </div>
+        <div class="why-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/11746/11746786.png" alt="">
+          <h3 class="why-title">Quality Products</h3>
+          <p>Premium Jain Irrigation products: Maximum water efficiency, UV-protected, 5-year warranty, Maharashtra climate proven.</p>
+        </div>
+        <div class="why-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/2857/2857433.png" alt="">
+          <h3 class="why-title">Proper Design & AutoCAD</h3>
+          <p>Precision AutoCAD irrigation & landscape designs ensure optimal water efficiency, accurate pipe layouts.</p>
+        </div>
+        <div class="why-card">
+          <img src="https://cdn-icons-png.flaticon.com/128/1067/1067566.png" alt="">
+          <h3 class="why-title">After-Sales Support</h3>
+          <p>24/7 Support • Free Maintenance • Quick Repairs • Lifetime Service</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products-section" id="products">
+    <div class="container">
+      <h1 class="section-title">Featured Products</h1>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://www.jains.com/irrigation/sp_images/PopUp%20805.png" alt="" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Pop-Up Sprinklers</h3>
+            <p class="product-desc">Hidden pop-up sprinklers for lawns and landscapes</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="https://www.jains.com/irrigation/images/J%20turboline%20Super.png" alt="" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Drip Pipes</h3>
+            <p class="product-desc">Water-saving drip pipes deliver directly to roots. Saves 70% water, boosts yields.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="https://tse2.mm.bing.net/th/id/OIP.c2IdMOvNsHKc2_F8m3SScAHaHd?pid=Api&P=0&h=180" alt="" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Filters</h3>
+            <p class="product-desc">High-efficiency filters remove sand, algae & debris to protect drip.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="coverage-section" id="coverage">
+    <div class="container">
+      <h1 class="section-title">Areas We Serve</h1>
+      <div class="coverage-grid">
+        <div class="coverage-item">
+          <div class="coverage-icon">📍</div>
+          <h3 class="coverage-title">Pune City</h3>
+          <p>Pimpri-Chinchwad, Hadapsar, Hinjewadi, Baner, Aundh, Kothrud</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-icon">🚜</div>
+          <h3 class="coverage-title">Shikrapur & Shirur</h3>
+          <p>Agricultural hubs with drip irrigation for sugarcane, grapes & pomegranate farms</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-icon">🏡</div>
+          <h3 class="coverage-title">Residential Areas</h3>
+          <p>Landscaping & garden automation for villas, societies & farmhouses</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-icon">🏭</div>
+          <h3 class="coverage-title">Industrial Parks</h3>
+          <p>MIDC Chakan, Ranjangaon, Talegaon - Large area sprinkler systems</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-icon">🌱</div>
+          <h3 class="coverage-title">Nearby Villages & Nurseries</h3>
+          <p>Manjari, Loni Kalbhor, Wagholi - Precision drip for fruit crops</p>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-icon">⚡</div>
+          <h3 class="coverage-title">Free Site Visit</h3>
+          <p>Pan-Maharashtra travel for design consultation & project estimation</p>
+        </div>
+      </div>
+      <div class="coverage-cta">
+        <a href="tel:+919822755102" class="hero-cta" style="margin-top:2rem; display:inline-block;">
+          📞 Call for Site Visit
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Varsha Irrigation & Landscape Solutions. All rights reserved. | Serving Maharashtra Farmers</p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mainNav');
+      const overlay = document.getElementById('menuOverlay');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    function closeMenu() {
+      const nav = document.getElementById('mainNav');
+      const overlay = document.getElementById('menuOverlay');
+      nav.classList.remove('active');
+      overlay.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
