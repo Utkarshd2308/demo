@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varsha Irrigation – Services</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #F2F2F2;
+      color: #333333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    /* ===== HEADER (same system as Home) ===== */
+    .main-header {
+      height: 110px;
+      background: linear-gradient(90deg, #b6e2a1 0%, #c0e6f8 50%, #9cc4ff 100%);
+      border-radius: 40px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      width: 100%;
+      margin: 0 0 20px 0;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 130px;      /* desktop वर clear */
+      width: auto;
+      display: block;
+    }
+
+    /* HAMBURGER BUTTON */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+      padding: 5px;
+    }
+
+    .menu-line {
+      width: 25px;
+      height: 3px;
+      background-color: #22313f;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .main-nav .nav-item {
+      font-weight: 600;
+      text-decoration: none;
+      color: #22313f;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .main-nav .nav-item:hover,
+    .main-nav .nav-item.active {
+      color: #26a65b;
+      border-color: #26a65b;
+    }
+
+    /* OVERLAY (for mobile) */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* MOBILE NAV */
+    @media (max-width: 768px) {
+      .logo-img {
+        height: 120px;
+        width:150px; /* mobile वर clearly दिसेल */
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: #f2f2f2;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem 0;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+        z-index: 1001;
+      }
+
+      .main-nav.active {
+        right: 0;
+      }
+
+      .main-nav .nav-item {
+        font-size: 1.1rem;
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* ===== SERVICES SECTION ===== */
+    .services-page {
+      padding: 4rem 0 3rem;
+      background-color: #F2F2F2;
+      color: #333333;
+    }
+
+    .services-main-title {
+      text-align: center;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .services-subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      font-size: 0.98rem;
+    }
+
+    .service-block {
+      background: white;
+      border-radius: 18px;
+      padding: 1.8rem 1.6rem 1.6rem;
+      margin: 1rem auto;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.4s ease;
+    }
+
+    .service-block:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+
+    .service-block-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #7ea9ff, #5476d8);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+    }
+
+    .service-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .service-list {
+      list-style: none;
+      margin: 0.4rem 0 1.2rem;
+      padding-left: 0;
+    }
+
+    .service-list li {
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .service-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background-color: #25D366;
+      color: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .service-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(37,211,102,0.5);
+    }
+
+    @media (min-width: 900px) {
+      .service-block {
+        max-width: 480px;
+        width: 100%;
+        padding: 2rem 2rem 1.7rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .service-block {
+        max-width: 100%;
+        padding: 1.5rem 1.3rem 1.4rem;
+        margin: 0.9rem 0;
+      }
+
+      .service-number {
+        width: 34px;
+        height: 34px;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* FLOATING BUTTONS */
+    .floating-actions {
+      position: fixed;
+      bottom: 25px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 3px solid rgba(255,255,255,0.8);
+      backdrop-filter: blur(15px);
+    }
+
+    .call-float {
+      background-color: #ea7b56;
+      color: #333333;
+      order: 2;
+    }
+
+    .call-float:hover {
+      transform: translateY(-8px) scale(1.1);
+      box-shadow: 0 20px 40px rgba(255,107,53,0.6);
+    }
+
+    .whatsapp-float {
+      background-color: rgb(6, 197, 6);
+      color: #333333;
+      order: 1;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-8px) scale(1.1);
+      box-shadow: 0 20px 40px rgba(37,211,102,0.6);
+    }
+
+    .footer-bottom {
+      padding: 1.5rem 0;
+      background:#ffffff;
+      border-top: 1px solid #e5e5e5;
+      font-size: 0.9rem;
+      color:#333333;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Varsha Irrigation Logo" class="logo-img">
+      </a>
+
+      <!-- HAMBURGER BUTTON -->
+      <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+      </div>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about us.html" class="nav-item">About Us</a>
+        <a href="service.html" class="nav-item active">Services</a>
+        <a href="index.html#products" class="nav-item">Products</a>
+        <a href="maintenance.html" class="nav-item">Maintenance</a>
+        <a href="contact us.html" class="nav-item">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
+
+  <!-- SERVICES -->
+  <section class="services-page" id="services-main">
+    <div class="container">
+      <h1 class="services-main-title">
+        <b><span style="color:green">Varsha Irrigation & Landscape's</span></b>
+        <p><b>Services</b></p>
+      </h1>
+      <p class="services-subtitle">
+        Professional irrigation, landscaping, automation, design & maintenance services for farms,
+        homes and industries in Maharashtra.
+      </p>
+
+      <!-- service blocks as-is -->
+      <!-- ... (तुझे existing article blocks तसेच ठेवले आहेत) ... -->
+
+      <article class="service-block">
+        <div class="service-block-header">
+          <span class="service-number">1</span>
+          <h2 class="service-title">Irrigation Systems</h2>
+        </div>
+        <ul class="service-list">
+          <li>Drip irrigation</li>
+          <li>Sprinkler systems</li>
+          <li>Micro irrigation</li>
+          <li>Rain gun systems</li>
+        </ul>
+        <a href="https://wa.me/919822755102?text=Hi%2C%20I%20want%20irrigation%20systems%20service"
+           class="service-btn">Enquire Now</a>
+      </article>
+
+      <!-- बाकी चार blocks unchanged -->
+       
+      <article class="service-block">
+        <div class="service-block-header">
+          <span class="service-number">2</span>
+          <h2 class="service-title">Landscape & Lawn Development</h2>
+        </div>
+        <ul class="service-list">
+          <li>Lawn installation</li>
+          <li>Garden development</li>
+          <li>Plantation</li>
+          <li>Vertical & terrace gardens</li>
+        </ul>
+        <a href="https://wa.me/919822755102?text=Hi%2C%20I%20want%20landscape%20%26%20lawn%20development%20service"
+           class="service-btn">Enquire Now</a>
+      </article>
+
+      <article class="service-block">
+        <div class="service-block-header">
+          <span class="service-number">3</span>
+          <h2 class="service-title">Irrigation Automation</h2>
+        </div>
+        <ul class="service-list">
+          <li>Solenoid valves</li>
+          <li>Timers & controllers</li>
+          <li>Zoned irrigation systems</li>
+        </ul>
+        <a href="https://wa.me/919822755102?text=Hi%2C%20I%20want%20irrigation%20automation%20service"
+           class="service-btn">Enquire Now</a>
+      </article>
+
+      <article class="service-block">
+        <div class="service-block-header">
+          <span class="service-number">4</span>
+          <h2 class="service-title">Design & Planning</h2>
+        </div>
+        <ul class="service-list">
+          <li>AutoCAD irrigation layouts</li>
+          <li>Coverage planning</li>
+          <li>BOQ preparation</li>
+        </ul>
+        <a href="https://wa.me/919822755102?text=Hi%2C%20I%20want%20design%20%26%20planning%20service"
+           class="service-btn">Enquire Now</a>
+      </article>
+      <!-- ... -->
+    </div>
+  </section>
+
+  <section>
+    <div class="floating-actions">
+      <a href="tel:+919822755102" class="float-btn call-float" title="Call Now">📞</a>
+      <a href="https://wa.me/919822755102?text=Hi%20, I%20want%20irrigation%20service!" class="float-btn whatsapp-float" title="WhatsApp">💬</a>
+    </div>
+  </section>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Varsha Irrigation & Landscape Solutions. All rights reserved. | Serving Maharashtra Farmers</p>
+  </div>
+
+  <script>
+    function toggleMobileMenu() {
+      const nav = document.getElementById('mainNav');
+      const overlay = document.getElementById('menuOverlay');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      const nav = document.getElementById('mainNav');
+      const overlay = document.getElementById('menuOverlay');
+      nav.classList.remove('active');
+      overlay.classList.remove('active');
+    }
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) {
+        closeMobileMenu();
+      }
+    });
+  </script>
+</body>
+</html>
